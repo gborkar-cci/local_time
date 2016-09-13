@@ -2,7 +2,7 @@ module LocalTimeHelper
   DEFAULT_FORMAT = '%B %e, %Y %l:%M%P'
 
   def local_time(time, options = nil)
-    time = utc_time(time) unless options[:do_not_convert_to_utc]?
+    time = utc_time(time)
 
     options, format = extract_options_and_value(options, :format)
     format = find_time_format(format)
@@ -20,7 +20,7 @@ module LocalTimeHelper
   end
 
   def local_relative_time(time, options = nil)
-    time = utc_time(time)
+    time = utc_time(time) unless options[:do_not_convert_to_utc]?
     options, type = extract_options_and_value(options, :type)
 
     options[:data] ||= {}
